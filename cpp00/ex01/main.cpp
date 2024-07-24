@@ -1,5 +1,6 @@
 
 #include "Phonebook.hpp"
+#include <cstdlib>
 
 void    Phonebook::Add(int nbr){
     std::string str;
@@ -21,7 +22,7 @@ void    Phonebook::Add(int nbr){
 }
 void    Phonebook::Search(int nbr){
 
-    std::string str;
+    char        str[1024];
     int         digit=0;
 
     if(nbr==0)
@@ -32,14 +33,21 @@ void    Phonebook::Search(int nbr){
         {
             if(i > 7)
                 break;
-            std::cout<<RED<<"\t"<<i<<"|\t"<<contact[i].getFirst_name()<<"|\t";
-            std::cout<<contact[i].getLast_name()<<"|\t";
-            std::cout<<contact[i].getNickname_name()<<RESET<<std::endl;
+            std::cout<<RED<<"\t"<<i<<"|\t"<<contact[i].getFirst_name().substr(0, 10);
+            if(contact[i].getFirst_name().length()>9)
+                std::cout<<".";
+            std::cout<<"|\t"<<contact[i].getLast_name().substr(0, 10);
+            if(contact[i].getLast_name().length()>9)
+                std::cout<<".";
+            std::cout<<"|\t"<<contact[i].getNickname_name().substr(0, 10);
+            if(contact[i].getNickname_name().length()>9)
+                std::cout<<".";
+            std::cout<<RESET<<std::endl;
         }
         std::cout<<BLUE<<"Enter index of contact to show their more informations : "<<RESET;
-        std::getline(std::cin, str);
-        digit = stoi(str);
-        if(digit>nbr || digit > 7)
+        std::cin.getline(str, 1024);
+        digit = atoi(str);
+        if(digit>nbr || digit > 7||(digit==0&&strcmp(str,"0")))
             std::cout<<BLUE<<"Your input out of range!!"<<std::endl<<RESET;
         else if(digit<nbr && digit <= 7 && digit >= 0)
         {
@@ -61,7 +69,7 @@ int main()
     phonebook.nbr = 0;
     while (1)
     {
-        std::cout<<GREEN<<"************Your options: ADD,  SEARCH, EXIT************"<<std::endl;
+        std::cout<<GREEN<<"************The program only accepts ADD, SEARCH and EXIT************"<<std::endl;
         std::cout<<"Please Enter you option : ";
         std::cin.getline(chois, 1024);
         std::cout<<RESET;

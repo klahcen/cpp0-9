@@ -1,6 +1,7 @@
 NAME = phonebook
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC  = main.cpp get_set.cpp
 
