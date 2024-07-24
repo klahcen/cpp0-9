@@ -8,7 +8,7 @@ fi
 
 count=$(< "$commit_count_file")
 
-make fclean
+
 
 count=$((count + 1))
 
@@ -32,6 +32,5 @@ else
   echo "Aborted git add operation."
 fi
 
-make re
 
 echo "Recompiled successfull."
