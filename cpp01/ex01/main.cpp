@@ -1,6 +1,5 @@
 
 #include "Zombie.hpp"
-#include <stdio.h>
 int main()
 {
     Zombie *zombie;
