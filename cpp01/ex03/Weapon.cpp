@@ -15,3 +15,7 @@ Weapon::Weapon(std::string string)
 {
     setType(string);
 }
+Weapon::Weapon()
+{
+
+}
