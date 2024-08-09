@@ -1,7 +1,7 @@
 
 #include "Weapon.hpp"
 
-std::string Weapon::getType()
+const std::string& Weapon::getType()
 {
     return (type);
 }
