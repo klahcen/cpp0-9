@@ -18,11 +18,11 @@ void Harl::error(void){
 
 void Harl::complain(std::string level)
 {
-    void (Harl::*f)() = 0;
+    void (Harl::*f)() = NULL;
     std::string flag[] = {"DEBUG","INFO","WARNING","ERROR"};
     int i;
     for(i=0; i < 4; i++){
-        if(!strcmp(flag[i].c_str(), level.c_str()))
+        if(flag[i]==level)
             break;
     }
     switch (i)
@@ -40,7 +40,7 @@ void Harl::complain(std::string level)
             f = &Harl::error;
             break;
         default :
-            std::cout << "Invalid level" << std::endl;
+            std::cout << "Error" << std::endl;
             return ;
     }
     (this->*f)();
