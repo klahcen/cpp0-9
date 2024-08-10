@@ -12,8 +12,17 @@ class Harl{
         void info(void);
         void warning(void);
         void error(void);
+
+        struct level 
+        {
+            std::string level;
+            void (Harl::*f)();
+        };
+        level level[4];
     public:
-        void complain(std::string level);
+        Harl();
+        ~Harl();
+        void complain(std::string lev);
 };
 
 

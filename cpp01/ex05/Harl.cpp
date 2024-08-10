@@ -16,32 +16,32 @@ void Harl::error(void){
     std::cout<<"This is unacceptable! I want to speak to the manager now."<<std::endl;
 }
 
-void Harl::complain(std::string level)
+Harl::Harl()
 {
-    void (Harl::*f)() = 0;
-    std::string flag[] = {"DEBUG","INFO","WARNING","ERROR"};
-    int i;
-    for(i=0; i < 4; i++){
-        if(!strcmp(flag[i].c_str(), level.c_str()))
-            break;
-    }
-    switch (i)
+    level[0].level = "DEBUG";
+    level[0].f =  &Harl::debug;
+    level[1].level = "INFO";
+    level[1].f =  &Harl::info;
+    level[2].level = "WARNING";
+    level[2].f =  &Harl::warning;
+    level[3].level = "ERROR";
+    level[3].f = &Harl::error;
+}
+Harl::~Harl()
+{
+
+}
+
+void Harl::complain(std::string lev)
+{
+   
+    for(int i=0; i < 4; i++)
     {
-        case 0:
-            f = &Harl::debug;
-            break;
-        case 1:
-            f = &Harl::info;
-            break;
-        case 2:
-            f = &Harl::warning;
-            break;
-        case 3:
-            f = &Harl::error;
-            break;
-        default :
-            std::cout << "Invalid level" << std::endl;
+        if(level[i].level == lev)
+        {
+            (this->*(level[i].f))();
             return ;
+        }
     }
-    (this->*f)();
+    std::cout<<"Error"<<std::endl;
 }

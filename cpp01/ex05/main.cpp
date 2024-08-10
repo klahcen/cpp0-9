@@ -3,6 +3,6 @@
 int main()
 {
     Harl harl;
-    harl.complain("INFO");
+    harl.complain("");
     return 0;
 }
