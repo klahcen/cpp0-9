@@ -11,8 +11,8 @@ class Fixed{
         static const int fractional=8;
     public:
         Fixed();
-        Fixed(const int value);
-        Fixed(const float value);
+        Fixed(const int intvalue);
+        Fixed(const float floatvalue);
         Fixed(const Fixed& F);
         Fixed& operator=(const Fixed& other);
         ~Fixed();
