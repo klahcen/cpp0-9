@@ -14,10 +14,8 @@ count=$((count + 1))
 
 echo "$count" > "$commit_count_file"
 
-echo "Are you sure you want to add all changes to git? (y/n)"
-read answer
 
-if [[ $answer == "y" ]]; then
+if [[ 1 ]]; then
   git add .
   git commit -m "commit number $count"
   git push
