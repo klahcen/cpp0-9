@@ -5,7 +5,7 @@
 Fixed::Fixed(){
 
     std::cout<<"Default constructor called"<<std::endl;
-    this->value =10;
+    this->value =0;
 }
 
 Fixed::Fixed(const Fixed& F){
