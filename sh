@@ -8,7 +8,7 @@ fi
 
 count=$(< "$commit_count_file")
 
-
+#while true; do ./sh; sleep 5; done
 
 count=$((count + 1))
 
