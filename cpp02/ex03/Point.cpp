@@ -6,7 +6,7 @@ Point::Point(){
     this->x= 0;
     this->x= 0;
 }
-Point::Point(float const x, float const y){
+Point::Point(Fixed const x, Fixed const y){
     this->x = x;
     this->y = y;
 }
@@ -24,10 +24,10 @@ Point& Point::operator= (const Point& other){
     return *this;
 }
 
-float Point::get_xpoint() const {
+Fixed Point::get_xpoint() const {
     return this->x;
 }
 
-float Point::get_ypoint() const {
+Fixed Point::get_ypoint() const {
     return this->y;
 }

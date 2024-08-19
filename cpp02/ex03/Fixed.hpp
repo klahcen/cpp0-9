@@ -1,6 +1,6 @@
 
 #ifndef FIXED_HPP
-# define FINED_HPP
+# define FIXED_HPP
 
 #include <iostream>
 #include <cmath>
@@ -8,7 +8,7 @@
 class Fixed{
     private:
         int value;
-        static const int fractional=8;
+        static const int fractional=9;
     public:
         Fixed();
         Fixed(const int intvalue);

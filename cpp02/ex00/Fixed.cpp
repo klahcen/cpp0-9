@@ -10,12 +10,12 @@ Fixed::Fixed(){
 
 Fixed::Fixed(const Fixed& F){
     std::cout<<"Copy constructor called"<<std::endl;
-    this->value = F.value;
+    *this = F;
 }
 
-Fixed&  Fixed::operator= (Fixed& a){
+Fixed&  Fixed::operator= (const Fixed& a){
     std::cout<<"Copy assignment operator called"<<std::endl;
-    this->value = a.value;
+    this->value = a.getRawBits();
     return *this;
 }
 

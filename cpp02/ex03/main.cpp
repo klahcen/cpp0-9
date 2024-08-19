@@ -4,11 +4,15 @@
 int main()
 {
     Point a(0, 0);
-    Point b(10, 0);
-    Point c(10, 10);
-    Point h(9, 01);
+    Point b(5, 0);
+    Point c(0, 5);
+    Point h(2, -2.01f);
 
    
-    std::cout<<"|"<<bsp(a, b, c, h)<<"|"<<std::endl;
+
+    if(bsp(a, b, c, h))
+        std::cout<< "Inside"<< std::endl;
+    else
+       std::cout<<"Outside"<<std::endl;
     return 0;
 }

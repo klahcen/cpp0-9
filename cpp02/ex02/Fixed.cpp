@@ -51,25 +51,30 @@ bool Fixed::operator!= (const Fixed& other){
 
 Fixed Fixed::operator+ (const Fixed& other){
     Fixed r;
-    r.value =(this->value + other.value)>> fractional;
+    r.value =(this->getRawBits() + other.getRawBits());
     return r;
 }
 
 Fixed Fixed::operator- (const Fixed& other){
     Fixed r;
-    r.value =(this->value - other.value)>> fractional;
+    r.value =(this->getRawBits() - other.getRawBits());
     return r;
 }
 
 Fixed Fixed::operator* (const Fixed& other){
     Fixed r;
-    r.value =(this->value * other.value)>> fractional;
+    r.value =(this->getRawBits() * other.getRawBits())>> fractional;
     return r;
 }
 
 Fixed Fixed::operator/ (const Fixed& other){
    Fixed r;
-    r.value =(this->value / other.value)>> fractional;
+   if(other.getRawBits() == 0)
+   {
+    
+    return 0;
+   }
+    r.value =((float)this->getRawBits() / other.getRawBits()) *(1<<fractional);
     return r;
 }
 
@@ -107,7 +112,7 @@ void Fixed::setRawBits( int const raw ){
 }
 
 float Fixed::toFloat( void ) const{
-    return static_cast<float>(this->value) / (1 << fractional);
+    return (float)(this->value) / (1 << fractional);
 }
 
 int Fixed::toInt( void ) const{

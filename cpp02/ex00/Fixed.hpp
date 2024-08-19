@@ -1,6 +1,6 @@
 
 #ifndef FIXED_HPP
-# define FINED_HPP
+# define FIXED_HPP
 
 #include <iostream>
 
@@ -11,7 +11,7 @@ class Fixed{
     public:
         Fixed();
         Fixed(const Fixed& F);
-        Fixed& operator= (Fixed& a);
+        Fixed& operator= (const Fixed& a);
         ~Fixed();
         int getRawBits(void) const;
         void setRawBits( int const raw );
