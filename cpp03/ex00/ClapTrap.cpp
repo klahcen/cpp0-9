@@ -1,44 +1,37 @@
 
 #include "ClapTrap.hpp"
 
-void ClapTrap::Hit_points(unsigned int h){
-    this->h = h;
-}
-
-void ClapTrap::Energy_points(unsigned int e){
-    this->e = e;
-}
-
-void ClapTrap::Attack_damage(unsigned int a){
-    this->a = a;
-}
-
-unsigned int  ClapTrap::get_Hit_points(void){
-    return this->h;
-}
-
-unsigned int ClapTrap::get_Energy_points(void){
-    return this->e;
-}
-
-unsigned int ClapTrap::get_Attack_damage(void){
-    return this->a;
-}
-
 void ClapTrap::attack(const std::string& target){
-    std::cout<<"ClapTrap "<<this->Name<<" attacks "<<target<<", causing "<<this->a<<" points of damage!"<<std::endl;
+    if(this->Hit_points > 0 && this->Energy_points > 0){
+        std::cout<<"ClapTrap "<<this->Name<<" attacks "<<target<<"\
+        , causing "<<this->Attack_damage<<" points of damage!"<<std::endl;
+        this->Hit_points--;
+        this->Energy_points--;
+    }
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
-
+    if(this->Hit_points > 0 && this->Energy_points > 0){
+        std::cout<<"ClapTrap "<<this->Name<<" takeDamage "<<amount<<"\
+        , causing "<<this->Attack_damage<<" points of damage!"<<std::endl;
+        this->Attack_damage++;
+    }
 }
 void ClapTrap::beRepaired(unsigned int amount){
-
+    if(this->Hit_points > 0 && this->Energy_points > 0){
+        std::cout<<"ClapTrap "<<this->Name<<" beRepaired "<<amount<<"\
+        , causing "<<this->Attack_damage<<" points of damage!"<<std::endl;
+        this->Hit_points++;
+        this->Energy_points--;
+    }
 }
 
 
 ClapTrap::ClapTrap(){
-    std::cout<<"call the constructors"<<std::endl;
+    std::cout<<"call the constructors```"<<std::endl;
+    this->Attack_damage = 10;
+    this->Energy_points = 10;
+    this->Attack_damage = 0;
 }
 
 ClapTrap::ClapTrap(std::string name){
@@ -48,9 +41,9 @@ ClapTrap::ClapTrap(const ClapTrap& other){
     *this = other;
 }
 ClapTrap& ClapTrap::operator= (const ClapTrap& other){
-    this->a = other.a;
-    this->h = other.h;
-    this->e = other.e;
+    this->Hit_points= other.Hit_points;
+    this->Attack_damage = other.Attack_damage;
+    this->Energy_points = other.Energy_points;
     this->Name = other.Name;
     return *this;
 }
