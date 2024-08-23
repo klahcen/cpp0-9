@@ -23,7 +23,6 @@ void ClapTrap::beRepaired(unsigned int amount){
 }
 
 
-
 ClapTrap::ClapTrap(){
     std::cout<<"call the constructors"<<std::endl;
     this->Attack_damage = 10;

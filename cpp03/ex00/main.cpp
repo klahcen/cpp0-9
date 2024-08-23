@@ -6,6 +6,15 @@ int  main(){
     claptrap.attack("target");
     claptrap.attack("target");
     claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
+    claptrap.attack("target");
     claptrap.takeDamage(12);
     claptrap.attack("target");
     return 0;
