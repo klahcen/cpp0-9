@@ -31,12 +31,15 @@ ClapTrap::ClapTrap(){
 }
 
 ClapTrap::ClapTrap(std::string name){
+    std::cout<<"Copy assignment operator called"<<std::endl;
     this->Name = name;
 }
 ClapTrap::ClapTrap(const ClapTrap& other){
+    std::cout<<"Copy constructor called"<<std::endl;
     *this = other;
 }
 ClapTrap& ClapTrap::operator= (const ClapTrap& other){
+    std::cout<<"Copy assignment operator called"<<std::endl;
     this->Hit_points= other.Hit_points;
     this->Attack_damage = other.Attack_damage;
     this->Energy_points = other.Energy_points;

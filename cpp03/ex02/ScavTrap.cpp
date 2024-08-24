@@ -10,6 +10,7 @@ ScavTrap::ScavTrap(){
 }
 
 ScavTrap::ScavTrap(std::string name){
+    std::cout<<"constructor called"<<std::endl;
     this->Name = name;
 }
 
@@ -34,6 +35,7 @@ void ScavTrap::attack(const std::string& target){
 }
 
 ScavTrap& ScavTrap::operator= (const ScavTrap& other){
+    std::cout<<"Copy assignment operator called"<<std::endl;
     this->Hit_points= other.Hit_points;
     this->Attack_damage = other.Attack_damage;
     this->Energy_points = other.Energy_points;
