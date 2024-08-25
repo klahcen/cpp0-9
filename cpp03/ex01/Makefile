@@ -1,5 +1,5 @@
 
-NAME = a.out
+NAME = Scav
 
 CXX      = c++
 

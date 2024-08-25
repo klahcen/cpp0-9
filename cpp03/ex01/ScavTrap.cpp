@@ -1,29 +1,22 @@
 
 #include "ScavTrap.hpp"
 
-
 ScavTrap::ScavTrap(){
-     std::cout<<"call the constructors"<<std::endl;
-    this->Hit_points = 100;
-    this->Energy_points = 50;
-    this->Attack_damage = 20;
+    std::cout<<"call the default constructor"<<std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name){
     std::cout<<"constructor called"<<std::endl;
     this->Name = name;
+    this->Hit_points = 100;
+    this->Energy_points = 50;
+    this->Attack_damage = 20;
 }
 
-int ScavTrap::gethit(void){
-    return (this->Hit_points);
-}
 
-int ScavTrap::gedamge(void){ 
-    return(this->Energy_points);
-}
-
-int ScavTrap::getenrge(void){
-    return  this->Attack_damage;
+ScavTrap::ScavTrap(const ScavTrap& other){
+    std::cout<<"Copy constructor called"<<std::endl;
+    *this = other;
 }
 
 void ScavTrap::guardGate(){
@@ -31,7 +24,10 @@ void ScavTrap::guardGate(){
 }
 
 void ScavTrap::attack(const std::string& target){
-    std::cout<<"ClapTrap "<<this->Name<<" attacks "<<target<<", causing "<<this->Attack_damage<<" points of damage!"<<std::endl;
+    if(this->Hit_points > 0 && this->Energy_points > 0){
+        std::cout<<"ScavTrap "<<this->Name<<" attacks "<<target<<", causing "<<this->Attack_damage<<" points of damage!"<<std::endl;
+        this->Energy_points--;
+    }
 }
 
 ScavTrap& ScavTrap::operator= (const ScavTrap& other){

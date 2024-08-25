@@ -1,9 +1,9 @@
 
-NAME = a.out
+NAME = Diamond
 
 CXX      = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98  
+CXXFLAGS = -Wall -Wextra -Werror 
 
 SRC  =ClapTrap.cpp  FragTrap.cpp  main.cpp  ScavTrap.cpp DiamondTrap.cpp
 

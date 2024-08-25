@@ -12,6 +12,7 @@ class ClapTrap{
         unsigned int Attack_damage;
     public:
         ClapTrap();
+        void displayStats();
         ClapTrap(std::string name);
         ClapTrap(const ClapTrap& other);
         ClapTrap& operator= (const ClapTrap& other);

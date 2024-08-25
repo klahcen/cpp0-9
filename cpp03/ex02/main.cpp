@@ -1,9 +1,9 @@
 #include "FragTrap.hpp"
 
 int  main(){
-    FragTrap fragtrap;
-    // fragTrap("Robot");
-    // std::cout<<"=>> "<<fragtrap.gethit()<<" ,"<<fragtrap.getenrge()<<" ,"<<fragtrap.gethit()<<std::endl;
+    FragTrap fragtrap("a");
+    
+    fragtrap.displayStats();
     fragtrap.attack("target");
     fragtrap.attack("target");
     fragtrap.attack("target");
@@ -11,8 +11,6 @@ int  main(){
     fragtrap.highFivesGuys();
     fragtrap.highFivesGuys();
     fragtrap.highFivesGuys();
-    // fragtrap.attack("target");
-    // fragtrap.guardGate();
-    // std::cout<<"=>> "<<fragtrap.gethit()<<" ,"<<fragtrap.getenrge()<<" ,"<<fragtrap.gethit()<<std::endl;
+    fragtrap.displayStats();
     return 0;
 }

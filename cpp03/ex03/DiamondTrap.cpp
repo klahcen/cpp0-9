@@ -3,13 +3,14 @@
 
 DiamondTrap::DiamondTrap(){
     std::cout<<"call the constructors"<<std::endl;
-    this->Hit_points = FragTrap::Hit_points;
-    this->Energy_points = ScavTrap::Energy_points;
-    this->Attack_damage = FragTrap::Attack_damage;
 }
 DiamondTrap::DiamondTrap(const std::string& name){
     std::cout<<"the constructors called"<<std::endl;
-    this->Name = name + "_clap_name";
+    this->Name = name;
+    ClapTrap::Name = name +"_clap_name"; 
+    this->Hit_points = FragTrap::Hit_points;
+    this->Energy_points = ScavTrap::Energy_points;
+    this->Attack_damage = FragTrap::Attack_damage;
 }
 DiamondTrap::DiamondTrap(const DiamondTrap& other){
     std::cout<<"Copy constructor called"<<std::endl;
@@ -26,12 +27,9 @@ DiamondTrap& DiamondTrap::operator= (const DiamondTrap& other){
 DiamondTrap::~DiamondTrap(){
     std::cout<<"call the destructor "<<std::endl;
 }
-void DiamondTrap::attack(const std::string& target){
-    ScavTrap::attack(target);
-}
 
 void DiamondTrap::whoAmI() {
-    std::cout << "DiamondTrap name: " << this->name << std::endl;
+    std::cout << "DiamondTrap name: " << this->Name << std::endl;
     std::cout << "ClapTrap name: " << ClapTrap::Name << std::endl;
 }
 

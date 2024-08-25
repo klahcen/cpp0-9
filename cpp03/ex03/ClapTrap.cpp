@@ -1,11 +1,16 @@
 
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(){
+    std::cout<<"call the default constructor"<<std::endl;
+}
+
 void ClapTrap::attack(const std::string& target){
     if(this->Hit_points > 0 && this->Energy_points > 0){
         std::cout<<"ClapTrap "<<this->Name<<" attacks "<<target<<", causing "<<this->Attack_damage<<" points of damage!"<<std::endl;
         this->Energy_points--;
     }
+    
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
@@ -23,16 +28,12 @@ void ClapTrap::beRepaired(unsigned int amount){
 }
 
 
-ClapTrap::ClapTrap(){
-    std::cout<<"call the constructors"<<std::endl;
-    this->Attack_damage = 10;
+ClapTrap::ClapTrap(std::string name){
+    std::cout<<"Copy assignment operator called"<<std::endl;
+    this->Name = name;
+    this->Hit_points = 10;
     this->Energy_points = 10;
     this->Attack_damage = 0;
-}
-
-ClapTrap::ClapTrap(std::string name){
-    std::cout<<"the constructors called"<<std::endl;
-    this->Name = name;
 }
 ClapTrap::ClapTrap(const ClapTrap& other){
     std::cout<<"Copy constructor called"<<std::endl;
@@ -49,4 +50,10 @@ ClapTrap& ClapTrap::operator= (const ClapTrap& other){
 
 ClapTrap::~ClapTrap(){
     std::cout<<"call the destructor "<<std::endl;
+}
+
+void ClapTrap::displayStats() {
+    std::cout << "Hit Points: " << this->Hit_points << std::endl;
+    std::cout << "Energy Points: " << this->Energy_points << std::endl;
+    std::cout << "Attack Damage: " << this->Attack_damage<< std::endl;
 }
