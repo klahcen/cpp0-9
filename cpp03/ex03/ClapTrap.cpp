@@ -31,7 +31,7 @@ ClapTrap::ClapTrap(){
 }
 
 ClapTrap::ClapTrap(std::string name){
-    std::cout<<"Copy assignment operator called"<<std::endl;
+    std::cout<<"the constructors called"<<std::endl;
     this->Name = name;
 }
 ClapTrap::ClapTrap(const ClapTrap& other){
