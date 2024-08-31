@@ -3,7 +3,7 @@
 
 ScavTrap::ScavTrap(){
     std::cout<<"call the default constructor"<<std::endl;
-    this->Hit_points = 100;
+    this->Hit_points = 1000;
     this->Energy_points = 50;
     this->Attack_damage = 20;
 }

@@ -2,9 +2,12 @@
 #ifndef CAT_HPP
 #define CAT_HPP
 
+#include "Brain.hpp"
 #include "Animal.hpp"
 
 class Cat: public Animal{
+    private: 
+        Brain *brain;
     public:
         Cat();
         Cat(const Cat& other);
@@ -13,14 +16,4 @@ class Cat: public Animal{
         ~Cat();
 };
 
-
-
-class WrongCat: public WrongAnimal{
-    public:
-        WrongCat();
-        WrongCat(const WrongCat& other);
-        WrongCat& operator= (const WrongCat& other);
-        void makeSound(void)  const;
-        ~WrongCat();
-};
 #endif
