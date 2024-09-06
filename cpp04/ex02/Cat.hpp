@@ -7,8 +7,8 @@
 
 class Cat: public AAnimal{
     private: 
-        Brain *brain;
     public:
+        Brain *brain;
         Cat();
         Cat(const Cat& other);
         Cat& operator= (const Cat& other);

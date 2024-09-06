@@ -7,7 +7,7 @@
 
 class Dog: public AAnimal{
     private:
-        Brain *brian;
+        Brain *brain;
     public:
         Dog();
         Dog(const Dog& other);
