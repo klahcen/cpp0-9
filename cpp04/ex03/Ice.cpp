@@ -1,18 +1,28 @@
 #include "Ice.hpp"
 
-Ice::Ice(){
+Ice::Ice():AMateria("ice"){
+    
 }
 
 Ice::Ice(const Ice &other){
-    this->type = other.type;
+    (void)other;
 }
 
 Ice& Ice::operator= (const Ice &other){
-    this->type = other.type;
+    (void)other;
     return *this;
 }
 
 Ice::~Ice(){
+}
+AMateria* Ice::clone() const{
+    return(new Ice());
+}
+
+void* Ice::operator new(size_t size){
+    void *p = ::operator new(size);
+    floor.liste_add(floor.liste_New(p));
+    return p;
 }
 
 void Ice::use(ICharacter& target){
