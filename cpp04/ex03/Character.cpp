@@ -12,9 +12,11 @@ Character::Character(std::string const &type){
 }
 
 Character::Character(const Character &other){
+    for(int i=0;i<4;i++)
+        this->slots[i] = NULL;
     *this = other;
 }
- std::string type;
+
 Character& Character::operator= (const Character &other){
    if(this != &other)
    {
@@ -59,7 +61,6 @@ std::string const & Character::getName() const{
 
 void Character::equip(AMateria* m)
 {
-    //check
     if(floor.liste_check(m))
     {
         for(int i=0; i<4 ;i++)
