@@ -24,7 +24,7 @@ class AForm{
         int  getgraed_e()const;
         bool getis_signed()const;
         void check_re(Bureaucrat const & executor) const;
-        ~AForm();
+        virtual ~AForm();
     
         class GradeTooHighException : public std::exception
         {
@@ -49,7 +49,7 @@ class AForm{
         class Error : public std::exception
         {
             public:
-                const char *what() const throw();
+                const char *what(void) const throw();
         };
 
 };

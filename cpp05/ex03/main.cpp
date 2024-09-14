@@ -5,18 +5,16 @@
 
 int main()
 {
-    Bureaucrat bureaucrat("b", 10);
-    // ShrubberyCreationForm sform("f", 20,20,"target");
-    // rform.beSigned(bureaucrat);
-    // RobotomyRequestForm  rform("targ");
-    Intern intern;
-    AForm *form;
     try{
-        form = intern.makeForm("", "rae");
-        form->execute(bureaucrat);
-        // std::cout<<form<<std::endl;
+        Bureaucrat bureaucrat(1,"b");
+        ShrubberyCreationForm sform("target");
+        RobotomyRequestForm  rform("gf");
+        Intern      s;
+        AForm    *b;
+        b = s.makeForm("shrubbery creation", "e");
+        b->beSigned(bureaucrat);
+        b->execute(bureaucrat);
     // sform.execute(bureaucrat);
-    // rform.execute(bureaucrat);
     //     Bureaucrat bureaucrat("bureaucrat", 1);
     //     Form    form("form", 1, 99);
     //     Form    form1;

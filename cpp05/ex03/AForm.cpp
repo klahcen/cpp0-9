@@ -64,6 +64,7 @@ const char *AForm::NotSignedException::what() const throw(){
 const char *AForm::GradeTooHighException::what() const throw(){
     return "Exception: Grade Too High!";
 }
+
 const char *AForm::Error::what() const throw(){
     return "Exception: Doesn't Exist The Name!";
 }

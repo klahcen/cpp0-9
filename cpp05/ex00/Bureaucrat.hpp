@@ -6,15 +6,15 @@
 
 class Bureaucrat{
     private:
-        const std::string name;
         int grade;
+        const std::string name;
     public:
         Bureaucrat();
         Bureaucrat(const Bureaucrat &other);
-        Bureaucrat(int grade, std::string &name);
+        Bureaucrat(int grade, std::string name);
         Bureaucrat& operator= (const Bureaucrat &other);
-        std::string getName();
-        int getGrade();
+        std::string getName()const;
+        int getGrade()const;
         void increment_Grade();
         void decrement_Grade();
         ~Bureaucrat();
@@ -30,4 +30,6 @@ class Bureaucrat{
                 const char *what(void) const throw();
         };
 };
+
+std::ostream& operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 #endif

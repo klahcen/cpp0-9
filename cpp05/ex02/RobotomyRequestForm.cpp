@@ -3,20 +3,18 @@
 #include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm()
-    : name(), is_signed(false), grade_to_signed(72), graed_to_execute(45), target(){}
+    : AForm(), target(){}
 
-RobotomyRequestForm::RobotomyRequestForm(std::string name, int grade_s, int grade_e, std::string target)
-    : name(name), is_signed(false), grade_to_signed(grade_s), graed_to_execute(grade_e), target(target){}
+RobotomyRequestForm::RobotomyRequestForm(std::string target)
+    : AForm("RobotomyRequestForm", 72, 45), target(target){}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
-    : name(other.name), is_signed(other.is_signed), grade_to_signed(other.grade_to_signed), \
-    graed_to_execute(other.graed_to_execute), target(other.target){}
+    : AForm(other), target(other.target){}
 
 RobotomyRequestForm& RobotomyRequestForm::operator= (const RobotomyRequestForm &other)
 {
     if(this != &other)
     {
-        this->is_signed = other.is_signed;
         this->target = other.target;
     }
     return *this;
@@ -32,7 +30,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
     this->check_re(executor);
     srand(time(0));
     if(rand()%2)
-        std::cout<<"informs that "<<this->target<<" has been robotomized successfully."<<std::endl;
+        std::cout<<this->target<<" has been robotomized successfully."<<std::endl;
     else
-        std::cout<<" informs that the robotomy failed."<<std::endl;
+        std::cout<<"the robotomy failed."<<std::endl;
 }

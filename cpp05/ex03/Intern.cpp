@@ -1,7 +1,6 @@
 #include "Intern.hpp"
 
 Intern::Intern(){
-
 }
 
 Intern::Intern(const Intern &other){
@@ -15,7 +14,6 @@ Intern& Intern::operator= (const Intern &other){
 }
 
 Intern::~Intern(){
-
 }
 
 AForm* Intern::makeForm(std::string name, std::string target){
@@ -33,7 +31,7 @@ AForm* Intern::makeForm(std::string name, std::string target){
     {
         case 1:
         {
-            form  = new PresidentialPardonForm(target);
+            form = new PresidentialPardonForm(target);
             std::cout<<"Intern creates PresidentialPardonForm"<<std::endl;
             break;
         }

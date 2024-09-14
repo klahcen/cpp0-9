@@ -1,21 +1,19 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() 
-    : name(), is_signed(false), grade_to_signed(145), graed_to_execute(137), target(){}
+    : AForm(), target(){}
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name, int grade_s, int grade_e, std::string target)
-    : name(name), is_signed(false), grade_to_signed(grade_s), graed_to_execute(grade_e), target(target){}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+    : AForm("ShrubberyCreationForm",25, 5), target(target){}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
-    : name(other.name), is_signed(other.is_signed), grade_to_signed(other.grade_to_signed), \
-    graed_to_execute(other.graed_to_execute), target(other.target){}
+    : AForm(other), target(other.target){}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator= (const ShrubberyCreationForm &other)
 {
     if(this != &other)
     {
-        this->is_signed = other.is_signed;
-        this->target = other.is_signed;
+        this->target = other.target;
     }
     return *this;
 }
@@ -41,4 +39,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
     <<"      ||      "<<std::endl
     <<"      ||      "<<std::endl
     <<"      ||"<<std::endl;
+    outFile.close();
 }

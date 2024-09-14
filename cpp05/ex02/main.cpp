@@ -5,13 +5,13 @@
 
 int main()
 {
-    Bureaucrat bureaucrat("b", 10);
-    ShrubberyCreationForm sform("f", 20,20,"target");
-    RobotomyRequestForm  rform;
-    rform.beSigned(bureaucrat);
+    Bureaucrat bureaucrat(1,"b");
+    ShrubberyCreationForm sform("target");
+    RobotomyRequestForm  rform("gf");
+    sform.beSigned(bureaucrat);
     try{
     // sform.execute(bureaucrat);
-    rform.execute(bureaucrat);
+    sform.execute(bureaucrat);
     //     Bureaucrat bureaucrat("bureaucrat", 1);
     //     Form    form("form", 1, 99);
     //     Form    form1;

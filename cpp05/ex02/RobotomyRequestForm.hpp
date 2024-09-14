@@ -6,14 +6,10 @@
 class RobotomyRequestForm : public AForm
 {
     private:
-        const std::string name;
-        bool   is_signed;
-        const int grade_to_signed;
-        const int graed_to_execute;
         std::string target;
     public:
         RobotomyRequestForm();
-        RobotomyRequestForm(std::string name, int grade_s, int grade_e, std::string target);
+        RobotomyRequestForm(std::string target);
         RobotomyRequestForm& operator= (const RobotomyRequestForm &other);
         RobotomyRequestForm(const RobotomyRequestForm &other);
         ~RobotomyRequestForm();

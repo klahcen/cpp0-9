@@ -4,8 +4,11 @@ int main()
 {
     try
     {
-        Bureaucrat bureaucrat;
-        bureaucrat.increment_Grade(); 
+        Bureaucrat bureaucrat(15, "maohhmed");
+        bureaucrat.decrement_Grade();
+        bureaucrat.increment_Grade();
+        bureaucrat.increment_Grade();
+       std::cout << bureaucrat ;
     }
     catch (std::exception &e)
     {

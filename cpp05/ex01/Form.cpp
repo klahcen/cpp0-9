@@ -2,11 +2,12 @@
 #include "Form.hpp"
 
 
-Form::Form() : name(""),is_signed(false), grade_to_signed(149), graed_to_execute(149){}
+Form::Form() 
+    : name(""),is_signed(false), grade_to_signed(149), graed_to_execute(149){}
 
 
-Form::Form(std::string name, int grade_s, int grade_e) : name(name), \
-is_signed(false), grade_to_signed(grade_s), graed_to_execute(grade_e)
+Form::Form(std::string name, int grade_s, int grade_e) 
+    : name(name), is_signed(false), grade_to_signed(grade_s), graed_to_execute(grade_e)
 {
     if(this->grade_to_signed < 1 || this->graed_to_execute < 1)
         throw Form::GradeTooHighException();

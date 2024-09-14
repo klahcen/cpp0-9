@@ -14,14 +14,13 @@ class Bureaucrat{
     public:
         Bureaucrat();
         Bureaucrat(const Bureaucrat &other);
-        Bureaucrat(std::string name, int grade);
+        Bureaucrat(int grade ,std::string name);
         Bureaucrat& operator= (const Bureaucrat &other);
-        std::string getName();
+        std::string getName() const;
         int getGrade() const;
         void signForm(AForm &form);
         void increment_Grade();
         void decrement_Grade();
-        void executeForm(AForm const & form);
         ~Bureaucrat();
 
         class GradeTooHighException : public std::exception
@@ -35,4 +34,5 @@ class Bureaucrat{
                 const char *what(void) const throw();
         };
 };
+std::ostream& operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 #endif
