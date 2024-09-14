@@ -3,6 +3,9 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat{
     private:
@@ -11,10 +14,11 @@ class Bureaucrat{
     public:
         Bureaucrat();
         Bureaucrat(const Bureaucrat &other);
-        Bureaucrat(int grade, std::string &name);
+        Bureaucrat(std::string name, int grade);
         Bureaucrat& operator= (const Bureaucrat &other);
         std::string getName();
         int getGrade();
+        void signForm(Form &form);
         void increment_Grade();
         void decrement_Grade();
         ~Bureaucrat();

@@ -15,7 +15,7 @@ Bureaucrat::~Bureaucrat(){
 
 }
 
-Bureaucrat::Bureaucrat(int grade, std::string &name) : name(name), grade(grade){
+Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade){
     if(this->grade<1)
         throw GradeTooHighException();
     if(this->grade>150)
@@ -40,6 +40,18 @@ void Bureaucrat::decrement_Grade(){
     this->grade++;
     if(this->grade>150)
         throw GradeTooLowException();
+}
+
+void Bureaucrat::signForm(Form &form){
+    try
+    {
+        form.beSigned(*this);
+        std::cout<<this->name<<" signed "<<form.getname()<<std::endl;
+    }
+    catch(std::exception &e)
+    {
+            std::cout<<this->name<<" couldn't sign "<<form.getname()<<" because "<<e.what()<<std::endl;
+    }
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw(){
