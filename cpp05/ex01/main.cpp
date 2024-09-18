@@ -3,9 +3,10 @@
 int main()
 {
     try{
-        Bureaucrat bureaucrat(2,"bureaucrat");
+        Bureaucrat bureaucrat(1,"bureaucrat");
         Form    form("form", 1, 99);
         // Form    form1;
+        // form.beSigned(bureaucrat);
         bureaucrat.signForm(form);
         bureaucrat.signForm(form);
         // form1 = form; 

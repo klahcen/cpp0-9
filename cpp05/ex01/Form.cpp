@@ -56,7 +56,7 @@ const char *Form::GradeTooLowException::what() const throw(){
     return "Exception: Grade Too Low!";
 }
 const char *Form::IsSignedException::what() const throw(){
-        return "Exception: En Read Signed!";
+        return "Exception: Form already Signed!";
 }
 const char *Form::GradeTooHighException::what() const throw(){
     return "Exception: Grade Too High!";

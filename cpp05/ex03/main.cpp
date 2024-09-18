@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
 int main()
@@ -9,9 +10,10 @@ int main()
         Bureaucrat bureaucrat(1,"b");
         ShrubberyCreationForm sform("target");
         RobotomyRequestForm  rform("gf");
+        PresidentialPardonForm pform("p");
         Intern      s;
         AForm    *b;
-        b = s.makeForm("shrubbery creation", "e");
+        b = s.makeForm("presidential pardon", "e");
         b->beSigned(bureaucrat);
         b->execute(bureaucrat);
     // sform.execute(bureaucrat);
