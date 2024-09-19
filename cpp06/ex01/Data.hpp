@@ -4,7 +4,10 @@
 #include <iostream>
 
 struct Data{
-    int id;
+    char c;
+    int i;
+    float f;
+    double d;
     std::string name;
 };
 

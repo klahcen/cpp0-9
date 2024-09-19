@@ -7,6 +7,6 @@ class Base;
 
 class A: public Base
 {
-
 };
+
 #endif

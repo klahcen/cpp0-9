@@ -6,5 +6,10 @@
 
 int main()
 {
+    Base *s = generate();
     
+    identify(s);
+    identify(*s);
+    
+    return 0;
 }

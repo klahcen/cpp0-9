@@ -138,7 +138,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter &other){
 
 ScalarConverter& ScalarConverter::operator= (const ScalarConverter &other){
     // *this = other;
-    (void)other;
+    static_cast<void>(other);
     return *this;
 }
 

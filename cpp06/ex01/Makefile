@@ -1,10 +1,10 @@
-NAME = convert
+NAME = serializer
 
 CXX      = c++
 
 CXXFLAGS = -std=c++98  -Wall -Wextra -Werror  -fsanitize=address
 
-SRC  = main.cpp Serialization.cpp Data.cpp
+SRC  = main.cpp Serializer.cpp 
 
 OBJ = $(SRC:.cpp=.o)
 

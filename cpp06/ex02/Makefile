@@ -2,10 +2,10 @@ NAME = convert
 
 CXX      = c++
 
-CXXFLAGS = -std=c++98  -Wall -Wextra -Werror  
+CXXFLAGS = -std=c++98 # -Wall -Wextra -Werror  
 
-SRC  = main.cpp C.cpp B.cpp A.cpp Base.cpp
-
+SRC  = C.cpp B.cpp A.cpp Base.cpp main.cpp
+ 
 OBJ = $(SRC:.cpp=.o)
 
 %.o: %.c $(SRC)
