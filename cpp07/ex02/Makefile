@@ -1,10 +1,10 @@
-NAME = convert
+NAME = ex02
 
 CXX      = c++
 
-CXXFLAGS = -std=c++98 # -Wall -Wextra -Werror  
+CXXFLAGS = -std=c++98  -Wall -Wextra -Werror  #-fsanitize=address
 
-SRC  = C.cpp B.cpp A.cpp Base.cpp main.cpp
+SRC  =  main.cpp
  
 OBJ = $(SRC:.cpp=.o)
 
@@ -24,4 +24,4 @@ fclean:
 
 re: fclean all clean
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean  

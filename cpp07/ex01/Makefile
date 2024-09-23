@@ -1,11 +1,11 @@
-NAME = serializer
+NAME = ex01
 
 CXX      = c++
 
-CXXFLAGS = -std=c++98  -Wall -Wextra -Werror  -fsanitize=address
+CXXFLAGS = -std=c++98  -Wall -Wextra -Werror  
 
-SRC  = main.cpp Serializer.cpp 
-
+SRC  =  main.cpp
+ 
 OBJ = $(SRC:.cpp=.o)
 
 %.o: %.c $(SRC)
@@ -24,4 +24,4 @@ fclean:
 
 re: fclean all clean
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean  

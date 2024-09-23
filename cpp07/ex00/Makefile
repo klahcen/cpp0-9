@@ -1,11 +1,11 @@
-NAME = convert
+NAME = ex00
 
 CXX      = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98  
+CXXFLAGS = -std=c++98  -Wall -Wextra -Werror  
 
-SRC  = main.cpp ScalarConverter.cpp 
-
+SRC  =  main.cpp
+ 
 OBJ = $(SRC:.cpp=.o)
 
 %.o: %.c $(SRC)
@@ -24,4 +24,4 @@ fclean:
 
 re: fclean all clean
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean%    
