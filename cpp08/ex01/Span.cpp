@@ -30,7 +30,7 @@ Span::~Span(){
 void Span::addNumber(int n){
     if(this->N > this->nbr_stored)
     {
-        this->array[nbr_stored]=n;
+        this->array.at(nbr_stored)=n;
         this->nbr_stored++;
     }
     else
@@ -38,11 +38,13 @@ void Span::addNumber(int n){
 }
 
 int Span::shortestSpan(){
+    int shor=0;
+    for(size_t i=0; i<array.size();i++){
+        if(i+1<array.size() && shor>= array[i]-array[i+1])
+            shor = array[i] - array[i+1];
+    }
 
-    for(size_t i=0; i<array.size();i++)
-        std::cout<<array[i]<<" ";
-
-    return 0;
+    return shor;
 }
 
 int Span::longestSpan(){
