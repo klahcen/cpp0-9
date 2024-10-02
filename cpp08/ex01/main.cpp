@@ -1,0 +1,19 @@
+#include "Span.hpp"
+
+int main()
+{
+    try{
+        Span sp(6);// = Span(5);
+        // sp.addNumber(6);
+        // sp.addNumber(39999);
+        // sp.addNumber(17);
+        // sp.addNumber(9);
+        // sp.addNumber(11);
+        sp.shortestSpan();
+    }
+    catch(std::exception &e)
+    {
+        std::cout<<e.what()<<std::endl;
+    }
+    return 0;
+}
