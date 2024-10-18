@@ -2,20 +2,20 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <iostream>
-#include <vector>
+#include <map>
 #include <fstream>
 #include <string>
 
 typedef struct s_date
 {
     std::string date;
-    int price;
+    double price;
 } t_date;
 
 class BitcoinExchange
 {
 private:
-    std::vector<t_date> _vector_date;
+    std::map<std::string, double> _data;
 
 public:
     BitcoinExchange();
@@ -23,6 +23,6 @@ public:
     const BitcoinExchange &operator=(const BitcoinExchange &other);
     ~BitcoinExchange();
     void import_data();
+    t_date serch_to_date(std::string str);
 };
-
 #endif

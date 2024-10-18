@@ -17,9 +17,11 @@ BitcoinExchange::~BitcoinExchange()
 t_date tostruct(std::string str)
 {
     t_date date;
+    std::string price;
+    price = str.substr(str.find(',') + 1, str.size() - str.find(','));
+    date.price = stod(price, 0);
     str.resize(str.find(','));
     date.date = str;
-    date.price = 00;
     return date;
 }
 
@@ -37,15 +39,28 @@ void BitcoinExchange::import_data()
         {
             if (!std::getline(file_data, str))
                 break;
-            tmp = tostruct(str);
-            if (i > 1)
-                _vector_date.push_back(tmp);
+            if (i > 0)
+            {
+                tmp = tostruct(str);
+                _data.insert({tmp.date, tmp.price});
+            }
             i++;
         }
     }
-    for (auto it : _vector_date)
-    {
-        std::cout << it.date<<"|"<<it.price<< std::endl;
-    }
     file_data.close();
+}
+
+t_date BitcoinExchange::serch_to_date(std::string str)
+{
+    t_date date;
+
+    for (auto it : _data)
+    {
+        if (it.first <= str)
+        {
+            date.date = it.first;
+            date.price = it.second;
+        }
+    }
+    return date;
 }
