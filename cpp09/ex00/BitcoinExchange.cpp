@@ -5,9 +5,14 @@ BitcoinExchange::BitcoinExchange()
 }
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
+    *this = other;
 }
 const BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
+    if (this != &other)
+    {
+        _data = other._data;
+    }
     return *this;
 }
 BitcoinExchange::~BitcoinExchange()
