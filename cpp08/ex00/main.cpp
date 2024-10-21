@@ -1,7 +1,7 @@
 
 #include "easyfind.hpp"
 #include <vector>
-#include <deque>
+#include <stack>
 
 int main()
 {
@@ -17,9 +17,9 @@ int main()
 
 
     try{
-        std::deque<int> n;
+        std::stack<int> n;
         for(int i=0; i<10; i++)
-            n.push_front(i);
+            n.push(i);
         easyfind(n, 4);
     }
     catch(std::exception &e){
