@@ -47,7 +47,7 @@ void BitcoinExchange::import_data()
             if (i > 0)
             {
                 tmp = tostruct(str);
-                _data.insert({tmp.date, tmp.price});
+                _data[tmp.date] = tmp.price;
             }
             i++;
         }
@@ -59,12 +59,13 @@ t_date BitcoinExchange::serch_to_date(std::string str)
 {
     t_date date;
 
-    for (auto it : _data)
+    std::map<std::string, double>::iterator it = _data.begin();
+    for (it = _data.begin(); it != _data.end(); it++)
     {
-        if (it.first <= str)
+        if (it->first <= str)
         {
-            date.date = it.first;
-            date.price = it.second;
+            date.date = it->first;
+            date.price = it->second;
         }
     }
     return date;

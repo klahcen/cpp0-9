@@ -1,23 +1,63 @@
 #include "BitcoinExchange.hpp"
 
+bool ft_isdigit(std::string str)
+{
+    for (size_t i = 0; i < str.size(); i++)
+    {
+        if (str[i] != ' ')
+        {
+            if (!isdigit(str[i]))
+            {
+                std::cout << str[i] << std::endl;
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool ft_isdigit_price(std::string str)
+{
+    int n = std::count(str.begin(), str.end(), '.');
+    if (n > 1)
+        return false;
+    for (size_t i = 0; i < str.size(); i++)
+    {
+        if (str[i] != ' ' && str[i] != '.')
+        {
+            if (!isdigit(str[i]))
+                return false;
+        }
+    }
+    return true;
+}
+
 void pars_date(std::string str)
 {
-    std::cout<<str<<std::endl;
-    std::string Str = str;
-    std::string str1=str;
-    std::string str2;
-    std::string str3;
-    str1.resize(str1.find('-'));
-    std::cout<<str1<<std::endl;
-    str2 = str;
-    str2 = str2.substr(str2.find('-')+1, str2.size() - str2.find('-'));
-    str2.resize(str2.find('-'));
-    std::cout<<str2<<std::endl;
-    str3 = str;
-    str3 = str3.substr(str3.find('-')+1, str3.size() - str3.find('-'));
-    str3.resize(str3.find('-')-str2.size());
-    std::cout<<str3<<std::endl;
-    // std::cout<<str1<<"|"<<str2<<"|"<<str3<<std::endl;
+    int n = std::count(str.begin(), str.end(), '-');
+    if (str.empty() || n != 2)
+        throw std::runtime_error("Error: bad date");
+    std::string year;
+    std::string months;
+    std::string day;
+
+    year = str;
+    months = str;
+    day = str;
+    year.resize(year.find('-'));
+    months = str.substr(year.size() + 1, str.size() - str.find('-') + 1);
+    months.resize(months.find('-'));
+    day = str.substr(months.size() + year.size() + 2, str.size());
+    if (!ft_isdigit(year) || !ft_isdigit(months) || !ft_isdigit(day))
+        throw std::runtime_error("Error bad date1");
+    if (year.empty() || months.empty() || day.empty())
+        throw std::runtime_error("Error: bad date");
+    if (atoi(year.c_str()) < 2009 || atoi(year.c_str()) > 2090)
+        throw std::runtime_error("Error: bad date");
+    if (atoi(months.c_str()) < 1 || atoi(months.c_str()) > 12)
+        throw std::runtime_error("Error: bad date");
+    if (atoi(day.c_str()) < 1 || atoi(day.c_str()) > 31)
+        throw std::runtime_error("Error: bad date");
 }
 
 void tostruct_to_input(std::string str, int i)
@@ -39,6 +79,8 @@ void tostruct_to_input(std::string str, int i)
         if (str.find('|') > str.size())
             throw std::runtime_error("Error: bad input => " + str);
         price = str.substr(str.find('|') + 2, str.size() - str.find('|'));
+        if (!ft_isdigit_price(price)) // to do add . in the digit and sign
+            throw std::runtime_error("Error in price");
         date.price = std::stod(price);
         if (date.price > 1000)
             throw std::runtime_error("Error: too large a number.");
@@ -49,7 +91,7 @@ void tostruct_to_input(std::string str, int i)
         pars_date(date.date);
         data.import_data();
         date_from_baiz = data.serch_to_date(date.date);
-        // std::cout << date.date << "=> " << date.price << " = " << date.price * date_from_baiz.price << std::endl;
+        std::cout << date.date << "=> " << date.price << " = " << date.price * date_from_baiz.price << std::endl;
     }
 }
 

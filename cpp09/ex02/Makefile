@@ -1,10 +1,10 @@
-NAME = RPN
+NAME = PmergeMe
 
 CXX      = c++
 
-CXXFLAGS = -std=c++11 -g3 -fsanitize=address #-Wall -Wextra -Werror 
+CXXFLAGS = -std=c++98 -g3 -fsanitize=address #-Wall -Wextra -Werror 
 
-SRC  = main.cpp  RPN.cpp
+SRC  = main.cpp  PmergeMe.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
