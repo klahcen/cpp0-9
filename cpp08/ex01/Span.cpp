@@ -24,6 +24,9 @@ Span &Span::operator=(const Span &other)
 {
     if (this != &other)
     {
+        this->N = other.N;
+        this->nbr_stored = other.nbr_stored;
+        this->array = other.array;
     }
     return *this;
 }
@@ -51,7 +54,7 @@ int Span::shortestSpan()
     for (size_t i = 0; i < array.size(); i++)
     {
 
-        for (size_t j = i+1; j < array.size(); j++)
+        for (size_t j = i + 1; j < array.size(); j++)
         {
             if (i < array.size())
             {
@@ -71,7 +74,7 @@ int Span::longestSpan()
     int min = 0;
     for (size_t i = 0; i < array.size(); i++)
     {
-        for (size_t j = i+1; j < array.size(); j++)
+        for (size_t j = i + 1; j < array.size(); j++)
         {
             if (i < array.size())
             {
