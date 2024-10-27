@@ -10,7 +10,7 @@ void easyfind(T type, int nbr)
     if(std::find(type.begin(), type.end(), nbr) != type.end())
     {
         std::cout<< "Element Found at Position: " 
-        <<(std::find(type.begin(), type.end(), nbr) - type.begin() + 1)
+        <<(std::find(type.begin(), type.end(), nbr) ;//- type.begin() + 1)
         <<std::endl;
     }
     else

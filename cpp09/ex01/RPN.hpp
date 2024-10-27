@@ -16,7 +16,6 @@ public:
     const RPN &operator=(const RPN &other);
     ~RPN();
     void store_data(const char *str);
-    // std::stack<char> ft_Reverse_stack();
 };
 
 #endif

@@ -25,11 +25,9 @@ void ft_Reverse_stack(std::stack<char> &_data) {
 
 void RPN::store_data(const char *S) {
   std::string str(S);
-  int reslt = 0;
   int fir_elem = 0;
   int sec_elem = 0;
-  int i = 0;
-  for (int i = 0; i < str.size(); i++) {
+  for (size_t i = 0; i < str.size(); i++) {
     if (i == str.size() - 1 && (!check_operator(str[i]) && str[i] != ' '))
       throw std::runtime_error("Error");
 
