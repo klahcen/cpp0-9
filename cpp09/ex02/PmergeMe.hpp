@@ -4,61 +4,107 @@
 #include <iostream>
 #include <vector>
 #include <deque>
-#include <ctime> 
+#include <ctime>
 
 template <class T>
-void merge(T right_stack, T left_stack, T *stack)
+int bainary_search(T lorgest, int x)
 {
-  int l = 0;
-  int r = 0;
-  int i = 0;
-  while (l < left_stack.size() && r < right_stack.size())
+  if(x > lorgest.at(lorgest.size()-1))
+    return lorgest.size();
+  for (size_t i = 0; i < lorgest.size() - 1; i++)
   {
-    if (left_stack[l] < right_stack[r])
+    if (lorgest[i] > x && lorgest[i + 1] && lorgest[i + 1] >= x)
     {
-      stack->at(i) = (left_stack[l]);
-      l++;
+      return (i);
     }
+  }
+  return -1;
+}
+
+template <class T>
+void inser_sort(T lorgest, T lowest, T *stack)
+{
+  typename T::iterator it = lorgest.begin();
+  lorgest.insert(it, lowest.at(0));
+  lowest.erase(lowest.begin());
+  for (size_t i = 0; i < lowest.size(); i++)
+  {
+    int index = bainary_search(lorgest, lowest.at(i));
+    if (index == -1)
+      throw std::runtime_error("Error");
     else
     {
-      stack->at(i) = (right_stack[r]);
-      r++;
+      it = lorgest.begin() + index;
+      lorgest.insert(it, lowest.at(i));
     }
-    i++;
   }
-  while (r < right_stack.size())
+  *stack = lorgest;
+}
+
+template <class T>
+void sort_lorgest(T *lorgest, T *lowest)
+{
+  int tmp_low = 0;
+  int tmp_loeg = 0;
+  for (size_t i = 0; i < lorgest->size(); i++)
   {
-    stack->at(i) = (right_stack[r]);
-    i++;
-    r++;
-  }
-  while (l < left_stack.size())
-  {
-    stack->at(i) = (left_stack[l]);
-    l++;
-    i++;
+    for (size_t j = i + 1; j < lorgest->size(); j++)
+    {
+      if (lorgest->at(i) > lorgest->at(j))
+      {
+        tmp_loeg = lorgest->at(i);
+        tmp_low = lowest->at(i);
+        lorgest->at(i) = lorgest->at(j);
+        lowest->at(i) = lowest->at(j);
+        lorgest->at(j) = tmp_loeg;
+        lowest->at(j) = tmp_low;
+      }
+    }
   }
 }
+
 template <class T>
 void merge_sort(T *stack)
 {
-  if (stack->size() <= 1)
-    return;
-  T right_stack;
-  T left_stack;
-  int j = 0;
-  int k = 0;
+  T lorgest;
+  T lowest;
   size_t i = 0;
-  for (; i < stack->size(); i++)
+  int nbr = -1;
+  if (stack->size() % 2)
   {
-    if (i < stack->size() / 2)
-      right_stack.push_back(stack->at(i));
-    else
-      left_stack.push_back(stack->at(i));
+    typename T::iterator it = stack->end() - 1;
+    nbr = stack->at(stack->size() - 1);
+    stack->erase(it);
   }
-  merge_sort(&right_stack);
-  merge_sort(&left_stack);
+  for (; i < stack->size() - 1; i += 2)
+  {
+    if (stack->at(i) >= stack->at(i + 1))
+    {
+      lorgest.push_back(stack->at(i));
+      lowest.push_back(stack->at(i + 1));
+    }
+    else
+    {
+      lorgest.push_back(stack->at(i + 1));
+      lowest.push_back(stack->at(i));
+    }
+  }
+  sort_lorgest(&lorgest, &lowest);
 
-  merge(right_stack, left_stack, stack);
+  inser_sort(lorgest, lowest, stack);
+  if(nbr!=-1)
+  {
+    typename T::iterator it = stack->begin();
+    int index = bainary_search(*stack,nbr);
+    if (index == -1)
+      throw std::runtime_error("Error1");
+    else
+    {
+      it = stack->begin() + index;
+      stack->insert(it, nbr);
+    }
+  }
+  lorgest.clear();
+  lowest.clear();
 }
 #endif

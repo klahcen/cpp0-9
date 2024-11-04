@@ -25,8 +25,6 @@ int main(int ac, char **av)
   int i = 1;
   std::deque<int> deque;
   std::vector<int> vector;
-  // const auto start_time_deque = 0;
-  // const auto end_time_deque = 0;
   if (ac > 1)
   {
     try
