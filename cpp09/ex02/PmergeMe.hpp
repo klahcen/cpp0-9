@@ -5,6 +5,7 @@
 #include <vector>
 #include <deque>
 #include <ctime>
+#include <stdlib.h>
 
 class Pmergeme
 {
@@ -18,5 +19,4 @@ class Pmergeme
     void merge_sort(std::deque<int> *stack);
     void merge_sort(std::vector<int> *stack);
 };
-
 #endif
