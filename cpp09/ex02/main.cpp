@@ -46,17 +46,17 @@ int main(int ac, char **av)
       std::clock_t start_time_vector = std::clock();
       pmergeme.merge_sort(&pmergeme.vector);
       std::clock_t end_time_vector = std::clock();
-      double duration_vector = double(end_time_vector - start_time_vector) ;
+      double duration_vector = double(end_time_vector - start_time_vector) / CLOCKS_PER_SEC*1000 ;
       std::clock_t start_time_deque = std::clock();
-      // pmergeme.merge_sort(&pmergeme.deque);
+      pmergeme.merge_sort(&pmergeme.deque);
       std::clock_t end_time_deque = std::clock();
-      double duration_deque = double(end_time_deque - start_time_deque) / CLOCKS_PER_SEC*1e6;
+      double duration_deque = double(end_time_deque - start_time_deque) / CLOCKS_PER_SEC*1000;
       std::cout << "After : ";
       for (size_t i = 0; i < pmergeme.vector.size(); i++)
         std::cout << pmergeme.vector[i] << " ";
       std::cout << std::endl;
-      std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << duration_vector << std::endl;
-      std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : " << duration_deque << std::endl;
+      std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << duration_vector <<" us"<<std::endl;
+      std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : " << duration_deque <<" us"<<std::endl;
     }
     catch (std::exception &e)
     {

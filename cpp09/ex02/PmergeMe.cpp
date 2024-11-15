@@ -32,7 +32,7 @@ int bainary_search(std::vector<int> lorgest, int x)
             return (i);
         }
     }
-    return -1;
+    return lorgest.size()-1;
 }
 
 std::vector<std::pair<int, int> > Pairing_elements(std::vector<int> *stack, size_t size)
@@ -96,10 +96,10 @@ std::vector<int> get_index_lowest(std::vector<int> lowest)
     int last_return_Jacobs=-1;
     for(size_t i=3; i<lowest.size();i++)
     {
-        if(Jacobsthal_sequence(i)<=(lowest.size()+1))
+        if(Jacobsthal_sequence(i)<=(lowest.size()))
         {
-            return_Jacobs = Jacobsthal_sequence(i)-1;
-            last_return_Jacobs = Jacobsthal_sequence(i-1)-1;
+            return_Jacobs = Jacobsthal_sequence(i);
+            last_return_Jacobs = Jacobsthal_sequence(i-1);
             for(int j = return_Jacobs; j>last_return_Jacobs;j--)
                   index_lowest.push_back(j);
         }
@@ -123,7 +123,9 @@ void Pmergeme::merge_sort(std::vector<int> *stack)
     std::vector<int> index_lowest;
     std::vector<std::pair<int, int> > tmp_vector;
     size_t size = stack->size();
-    int index = -1;
+    if(size==1)
+        return ;
+    int index = -2;
     tmp_vector = Pairing_elements(stack, size);
     tmp_vector = Sorting_pairs(tmp_vector);
     tmp_vector = Sorting_the_Pairs(tmp_vector);
@@ -131,32 +133,151 @@ void Pmergeme::merge_sort(std::vector<int> *stack)
     lowest.reserve(size / 2);
     Create_two_sequences(&lorgest, &lowest, tmp_vector);
     index_lowest = get_index_lowest(lowest);
-
-
-
-    std::cout<<"index_lowest: "<<index_lowest.size()<<std::endl;
-    std::cout<<"lowest: "<<lowest.size()<<std::endl;
-    // for(size_t i =0; i<index_lowest.size();i++)
-    //     std::cout<<index_lowest[i]<<" | ";
-    // std::cout<<std::endl;
-    // for(size_t i =0; i<lowest.size();i++)
-    //     std::cout<<lowest[i]<<" | ";
-    // std::cout<<std::endl;
-
     std::vector<int>::iterator it = lorgest.begin();
     lorgest.insert(it, lowest[0]);
     for (size_t i = 0; i < index_lowest.size(); i++)
     {
-        index = bainary_search(lorgest, lowest[index_lowest[i]]);
-        if (index == -1)
-            throw std::runtime_error("Error");
+        if(i > lowest.size())
+            break;
+        index = bainary_search(lorgest, lowest[index_lowest[i]-1]);
         std::vector<int>::iterator it = lorgest.begin() + index;
-        lorgest.insert(it, lowest[index_lowest[i]]);
+        lorgest.insert(it, lowest[index_lowest[i]-1]);
     }
     if (size % 2)
     {
         index = bainary_search(lorgest, stack->at(size - 1));
         std::vector<int>::iterator it = lorgest.begin() + index;
+        lorgest.insert(it, stack->at(size - 1));
+    }
+    *stack = lorgest;
+}
+
+
+//deque
+
+int bainary_search(std::deque<int> lorgest, int x)
+{
+    if (x > lorgest.at(lorgest.size() - 2))
+        return lorgest.size() - 1;
+    for (size_t i = 0; i < lorgest.size() - 1; i++)
+    {
+        if (lorgest[i] > x && lorgest[i + 1] && lorgest[i + 1] >= x)
+        {
+            return (i);
+        }
+    }
+    return lorgest.size() - 1;
+}
+
+std::deque<std::pair<int, int> > Pairing_elements(std::deque<int> *stack, size_t size)
+{
+    std::deque<std::pair<int, int> > tmp;
+    if (size % 2 != 0)
+    {
+        size -= 1;
+    }
+    for (size_t i = 0; i < size; i += 2)
+    {
+        tmp.push_back(std::make_pair((*stack)[i], (*stack)[i + 1]));
+    }
+
+    return tmp;
+}
+std::deque<std::pair<int, int> > Sorting_pairs(std::deque<std::pair<int, int> > tmp_deque)
+{
+    int tmp = 0;
+    for (size_t i = 0; i < tmp_deque.size(); i++)
+    {
+        if (tmp_deque[i].first < tmp_deque[i].second)
+        {
+            tmp = tmp_deque[i].first;
+            tmp_deque[i].first = tmp_deque[i].second;
+            tmp_deque[i].second = tmp;
+        }
+    }
+    return tmp_deque;
+}
+
+std::deque<std::pair<int, int> > Sorting_the_Pairs(std::deque<std::pair<int, int> > tmp_deque)
+{
+
+    for (size_t i = 0; i < tmp_deque.size(); i++)
+    {
+        for (size_t j = i + 1; j < tmp_deque.size(); j++)
+        {
+            if (tmp_deque[i].first > tmp_deque[j].first)
+            {
+                swap(tmp_deque[i], tmp_deque[j]);
+            }
+        }
+    }
+    return tmp_deque;
+}
+
+void Create_two_sequences(std::deque<int> *lorgest, std::deque<int> *lowest, std::deque<std::pair<int, int> > tmp_deque)
+{
+    for (size_t i = 0; i < tmp_deque.size(); i++)
+    {
+        lorgest->push_back(tmp_deque[i].first);
+        lowest->push_back(tmp_deque[i].second);
+    }
+}
+std::deque<int> get_index_lowest(std::deque<int> lowest)
+{
+    std::deque<int> index_lowest;
+    int return_Jacobs=-1;
+    int last_return_Jacobs=-1;
+    for(size_t i=3; i<lowest.size();i++)
+    {
+        if(Jacobsthal_sequence(i)<=(lowest.size()))
+        {
+            return_Jacobs = Jacobsthal_sequence(i)-1;
+            last_return_Jacobs = Jacobsthal_sequence(i-1)-1;
+            for(int j = return_Jacobs; j>last_return_Jacobs;j--)
+                  index_lowest.push_back(j);
+        }
+        else
+        {
+            int last = Jacobsthal_sequence(i-1);
+            for(size_t j = last; j<lowest.size();j++)
+                  index_lowest.push_back(j);
+            break;
+        }
+    }
+    return index_lowest;
+}
+
+
+void Pmergeme::merge_sort(std::deque<int> *stack)
+{
+    std::deque<int> lorgest;
+    std::deque<int> lowest;
+    std::deque<int> tmp;
+    std::deque<int> index_lowest;
+    std::deque<std::pair<int, int> > tmp_deque;
+    size_t size = stack->size();
+    if(size==1)
+        return ;
+    int index = -1;
+    tmp_deque = Pairing_elements(stack, size);
+    tmp_deque = Sorting_pairs(tmp_deque);
+    tmp_deque = Sorting_the_Pairs(tmp_deque);
+    Create_two_sequences(&lorgest, &lowest, tmp_deque);
+    index_lowest = get_index_lowest(lowest);
+    std::deque<int>::iterator it = lorgest.begin();
+    lorgest.insert(it, lowest[0]);
+    for (size_t i = 0; i < index_lowest.size(); i++)
+    {
+        if(i>lowest.size())
+            break;
+        index = bainary_search(lorgest, lowest[index_lowest[i]-1]);
+        std::deque<int>::iterator it = lorgest.begin() + index;
+        lorgest.insert(it, lowest[index_lowest[i]-1]);
+    }
+    if (size % 2)
+    {
+        index = bainary_search(lorgest, stack->at(size - 1));
+        std::deque<int>::iterator it = lorgest.begin() + index;
         lorgest.insert(it, stack->at(size - 1));
     }
     *stack = lorgest;
