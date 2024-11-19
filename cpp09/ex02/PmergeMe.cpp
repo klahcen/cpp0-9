@@ -264,6 +264,9 @@ void Pmergeme::merge_sort(std::deque<int> *stack)
     tmp_deque = Sorting_the_Pairs(tmp_deque);
     Create_two_sequences(&lorgest, &lowest, tmp_deque);
     index_lowest = get_index_lowest(lowest);
+    for(size_t i=0;i < index_lowest.size();i++)
+        std::cout<<index_lowest[i]<<" ";
+    std::cout<<std::endl;
     std::deque<int>::iterator it = lorgest.begin();
     lorgest.insert(it, lowest[0]);
     for (size_t i = 0; i < index_lowest.size(); i++)
