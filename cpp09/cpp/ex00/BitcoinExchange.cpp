@@ -1,5 +1,6 @@
 #include "BitcoinExchange.hpp"
 #include <sstream>
+
 BitcoinExchange::BitcoinExchange()
 {
 }
@@ -40,7 +41,7 @@ void BitcoinExchange::import_data()
     std::ifstream file_data("data.csv");
     if (!file_data.is_open())
     {
-        std::cerr<<"Is not open "<<std::endl;
+        std::cerr<<"Is not open the data base"<<std::endl;
         exit (1);
     }
     else

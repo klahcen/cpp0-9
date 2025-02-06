@@ -1,92 +1,126 @@
 #include "BitcoinExchange.hpp"
+#include <cctype>
+#include <cstddef>
+#include <string>
+#include <sstream>
 
-bool ft_isdigit(std::string str)
-{
-    for (size_t i = 0; i < str.size(); i++)
-    {
-        if (str[i] != ' ')
-        {
-            if (!isdigit(str[i]))
-            {
-                std::cout << str[i] << std::endl;
-                return false;
-            }
+
+bool isValidfloat(const std::string& str) {
+    if (str.empty()) return false;  
+
+    size_t i = 0;
+    if (str[i] == '+' || str[i] == '-') {  
+        i++; 
+    }
+
+    bool hasDecimal = false;
+    bool hasDigits = false;
+
+    for (; i < str.size(); ++i) {
+        if (isdigit(str[i])) {
+            hasDigits = true;  
+        } else if (str[i] == '.') {
+            if (hasDecimal) return false; 
+            hasDecimal = true;
+        } else {
+            return false; 
+        }
+    }
+
+    return hasDigits;  
+}
+
+bool isNumber(const std::string& str) {
+    if (str.empty()) return false;
+
+    for (size_t i = 0; i < str.size(); ++i) {
+        if (!isdigit(str[i])) {
+            return false;
         }
     }
     return true;
 }
 
-bool ft_isdigit_price(std::string str)
+int ft_stoi(std::string str)
 {
-    int n = std::count(str.begin(), str.end(), '.');
-    if (n > 1)
-        return false;
-    for (size_t i = 0; i < str.size(); i++)
-    {
-        if (str[i] != ' ' && str[i] != '.')
-        {
-            if (!isdigit(str[i]))
-                return false;
-        }
+    if(!isNumber(str))
+        throw std::runtime_error("Error: bad date => "+str+".");
+    float num;
+    std::stringstream ss(str);
+    ss >> num;
+
+    if (ss.fail()) {
+        throw std::runtime_error("Error: bad date => "+str+".");
+    } 
+    else {
+        return num;
     }
-    return true;
 }
 
-void pars_date(std::string str)
+float ft_stod(std::string str)
 {
-    int n = std::count(str.begin(), str.end(), '-');
-    if (str.empty() || n != 2)
-        throw std::runtime_error("Error: bad date");
-    std::string year;
-    std::string months;
-    std::string day;
+    if(!isValidfloat(str))
+        throw std::runtime_error("Error: bad date => "+str+".");
+    float num;
+    std::stringstream ss(str);
+    ss >> num;
 
-    year = str;
-    months = str;
-    day = str;
-    year.resize(year.find('-'));
-    months = str.substr(year.size() + 1, str.size() - str.find('-') + 1);
-    months.resize(months.find('-'));
-    day = str.substr(months.size() + year.size() + 2, str.size());
-    if (!ft_isdigit(year) || !ft_isdigit(months) || !ft_isdigit(day))
-        throw std::runtime_error("Error bad date1");
-    if (year.empty() || months.empty() || day.empty())
-        throw std::runtime_error("Error: bad date");
-    if (atoi(year.c_str()) < 2009 || atoi(year.c_str()) > 2090)
-        throw std::runtime_error("Error: bad date");
-    if (atoi(months.c_str()) < 1 || atoi(months.c_str()) > 12)
-        throw std::runtime_error("Error: bad date");
-    if (atoi(day.c_str()) < 1 || atoi(day.c_str()) > 31)
-        throw std::runtime_error("Error: bad date");
+    if (ss.fail()) {
+        throw std::runtime_error("Error: bad date => "+str+".");
+    } 
+    else {
+        return num;
+    }
 }
 
-void tostruct_to_input(std::string str)
-{
-    t_date date;
-    t_date date_from_baiz;
-    std::string price;
-    std::string Str;
-    BitcoinExchange data;
-    char *endptr;
 
-    Str = str;
-    if (str.find('|') > str.size())
-        throw std::runtime_error("Error: bad input => " + str);
-    price = str.substr(str.find('|') + 2, str.size() - str.find('|'));
-    date.price = std::strtod(price.c_str(), &endptr);
-    if (*endptr != '\0')
-        throw std::runtime_error("Error in price");
-    if (date.price > 1000)
-        throw std::runtime_error("Error: too large a number.");
-    else if (date.price < 0)
+std::string parsing_date(std::string date)
+{
+    size_t pos = date.find("-");
+    if(pos==std::string::npos)
+         throw std::runtime_error("Error: bad date.");
+    std::string year = date.substr(0,pos);
+    std::string str = date.substr(pos+1,date.size());
+    pos = str.find("-");
+    if(pos == std::string::npos)
+         throw std::runtime_error("Error: bad date.");
+    std::string month = str.substr(0,pos);
+    std::string day = str.substr(pos+1,str.size());
+    if(ft_stoi(year)>2050||ft_stoi(year)<2009)
+         throw std::runtime_error("Error: bad date.");
+    if(ft_stoi(month)>12||ft_stoi(month)<0) 
+         throw std::runtime_error("Error: bad date.");
+    if(ft_stoi(day)>30||ft_stoi(day)<0)
+         throw std::runtime_error("Error: bad date.");
+    return date;
+}
+float parsing_price(std::string price)
+{
+    float nbr;
+     size_t i = 0;
+    while (i < price.size() && std::isspace(price[i])) {
+        i++;
+    }
+    nbr = ft_stod(price.substr(i));
+    if(nbr<0)
         throw std::runtime_error("Error: not a positive number.");
-    str.resize(str.find('|'));
-    date.date = str;
-    pars_date(date.date);
-    data.import_data();
-    date_from_baiz = data.serch_to_date(date.date);
-    std::cout << date.date << "=> " << date.price << " = " << date.price * date_from_baiz.price << std::endl;
+    if(nbr>1000)
+        throw std::runtime_error("Error: too large a number.");
+    return nbr;
 }
+
+void start(std::string str,BitcoinExchange data)
+{
+    (void)data;
+    size_t pos = str.find("|");
+    if(pos==std::string::npos)
+        throw std::runtime_error("Error: bad date => "+str+".");
+    std::string date = str.substr(0, pos);
+    std::string price = str.substr(pos+1, str.size());
+    date = parsing_date(date.erase(date.find_last_not_of(" ") + 1));
+    float nbr = parsing_price(price.erase(price.find_last_not_of(" ")+1));
+    std::cout << date << "=> " << nbr << " = " << nbr * data.serch_to_date(date).price << std::endl;
+ }
 
 int main(int ac, char **av)
 {
@@ -102,6 +136,8 @@ int main(int ac, char **av)
                 std::string str;
                 t_date tmp;
                 int i = 0;
+                BitcoinExchange data;
+                data.import_data();
                 for (;;)
                 {
                     if (!std::getline(file_data, str))
@@ -109,13 +145,13 @@ int main(int ac, char **av)
                     if (i == 0)
                     {
                         if (str != "date | value")
-                            throw std::runtime_error("Error in form of file");
+                            throw std::runtime_error("Error in form of file.");
                     }
                     else
                     {
                         try
                         {
-                            tostruct_to_input(str);
+                            start(str,data);
                         }
                         catch (std::exception &e)
                         {
