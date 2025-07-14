@@ -72,7 +72,7 @@ This repository contains the C++ (cpp) modules completed as part of the curricul
 - [ex00 - Class implementation](./cpp03/ex00/)
 - [ex01 - Inheritance, Constructors/Destructors Chaining, Overriding Member Functions](./cpp03/ex01/)
 - [ex02 - Inheritance, Constructors/Destructors Chaining, Overriding Member Functions](./cpp03/ex02/)
-- [ex03 - Diamond Problem, Multiple Inheritance, Constructors/Destructors Chaining, Accessing Attributes and Member Functions from Parent Classes](./cpp03ex03/)
+- [ex03 - Diamond Problem, Multiple Inheritance, Constructors/Destructors Chaining, Accessing Attributes and Member Functions from Parent Classes](./cpp03/ex03/)
 
 ### Resources
 - **Inheritance And Polymorphism:** [YouTube](https://www.youtube.com/watch?v=wrkkAOMp3Sw)
@@ -134,9 +134,9 @@ This repository contains the C++ (cpp) modules completed as part of the curricul
 <details>
 <summary>Module 06 - C++ casts</summary>
 
-- [ex00 - type conversion, static_cast](./cpp06/ex00/)
-- [ex01 - reinterpret_cast](./cpp06/ex01/)
-- [ex02 - dynamic_cast](./cpp06/ex02/)
+- [ex00 - type conversion, static_cast](./cpp06/re/ex00/)
+- [ex01 - reinterpret_cast](./cpp06/re/ex01/)
+- [ex02 - dynamic_cast](./cpp06/re/ex02/)
 
 ### Resources
 - **Type Conversion in C++** [scaler](https://www.scaler.com/topics/cpp/type-conversion-in-cpp/)
