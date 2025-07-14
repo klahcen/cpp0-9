@@ -9,7 +9,6 @@ This repository contains the C++ (cpp) modules completed as part of the curricul
 
 - [ex00 - String manipulation and command-line argument handling](./cpp00/ex00/)
 - [ex01 - Classes, Object instantiation, Basic I/O, String manipulation](./cpp00/ex01/)
-- [ex02 - File recreation, C++ programming, Object-oriented design](./cpp00/ex02/)
 
 **Resources:**
 - **OOP in cpp:** [GeeksforGeeks](https://www.geeksforgeeks.org/object-oriented-programming-in-cpp/)
@@ -70,9 +69,9 @@ This repository contains the C++ (cpp) modules completed as part of the curricul
 <details>
 <summary>Module 03 - Inheritance</summary>
 
-- [ex00 - Class implementation](./cpp03ex00/)
+- [ex00 - Class implementation](./cpp03/ex00/)
 - [ex01 - Inheritance, Constructors/Destructors Chaining, Overriding Member Functions](./cpp03/ex01/)
-- [ex02 - Inheritance, Constructors/Destructors Chaining, Overriding Member Functions](./cpp03ex02/)
+- [ex02 - Inheritance, Constructors/Destructors Chaining, Overriding Member Functions](./cpp03/ex02/)
 - [ex03 - Diamond Problem, Multiple Inheritance, Constructors/Destructors Chaining, Accessing Attributes and Member Functions from Parent Classes](./cpp03ex03/)
 
 ### Resources
@@ -193,9 +192,9 @@ This repository contains the C++ (cpp) modules completed as part of the curricul
 <details>
 <summary>Module 09 - STL</summary>
 
-- [ex00 - File manipulation, std::map, time parsing](./cpp09/ex00/)
-- [ex01 - Reverse Polish Notation, std::stack, input parsing](./cpp09/ex01/)
-- [ex02 - Merge sort algorithm, std::vector, std::deque, input parsing](./cpp09/ex02/)
+- [ex00 - File manipulation, std::map, time parsing](./cpp09/cpp/ex00/)
+- [ex01 - Reverse Polish Notation, std::stack, input parsing](./cpp09/cpp/ex01/)
+- [ex02 - Merge sort algorithm, std::vector, std::deque, input parsing](./cpp09/cpp/ex02/)
 
 ### Resources
 - **Substring in C++** [geeksforgeeks](https://www.geeksforgeeks.org/substring-in-cpp/)
